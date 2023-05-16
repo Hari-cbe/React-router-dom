@@ -8,7 +8,7 @@ export const Careers = () => {
     <div>
       {data.map((item)=>(
       <div>
-        <Link to='/' key={item.id}>
+        <Link to={item.id.toString()} key={item.id}>
          <p>Role : {item.title}</p>
           <p>Based Location : {item.location}</p>
         </Link>
@@ -20,5 +20,10 @@ export const Careers = () => {
 
 export const loaderConst = async () => {
  const res = await fetch('http://localhost:4000/careers')
+
+ if (!res.ok){
+  throw Error("Career could not be founded")
+ }
+ 
  return res.json()
 }

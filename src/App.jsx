@@ -5,9 +5,11 @@ import {createBrowserRouter, Route, Link, createRoutesFromElements,RouterProvide
 import { Home } from './Pages/Home';
 import { About } from './Pages/About';
 import {Faq }from './Pages/Help/Faq';
-import {Contact }from './Pages/Help/Contact';
+import {actionLoader, Contact }from './Pages/Help/Contact';
 import {Careers, loaderConst} from './Pages/Careers';
 import { NotFound } from './Pages/404error';
+import { CareerDetials, loaderData } from './Pages/CareerDetials';
+import { CareersError } from './Pages/CareersError';
 
 // Layouts
 import { RootLayout } from './Layouts/RootLayout';
@@ -23,14 +25,19 @@ function App() {
     createRoutesFromElements(
       <Route path='/' element={<RootLayout/>}>
         <Route index element={<Home/>}/>
+
         <Route path='about' element={<About/>}/>
-        <Route path='career' element={<CareerLayout/>}>
+
+        <Route path='career' element={<CareerLayout/>} errorElement={<CareersError/>}>
           <Route index element={<Careers/>} loader={loaderConst}/>
+          <Route path=":id" element={<CareerDetials/>} loader={loaderData}/>
         </Route>
+
         <Route path='help' element={<HelpLayout/>}>
             <Route path='faq' element={<Faq />}/>
-            <Route path='contact' element={<Contact />}/>
+            <Route path='contact' element={<Contact />} action={actionLoader}/>
         </Route>
+
         <Route path='*' element={<NotFound/>}/>
       </Route>
     )
@@ -38,7 +45,7 @@ function App() {
 
   return (
     <>
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
     </>
   )
 }
