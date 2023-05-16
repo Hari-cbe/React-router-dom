@@ -23,7 +23,6 @@ export const actionLoader = async ({request})=>{
     FirstName : data.get('Fname'),
     LastName : data.get('Lname')
   } 
-
   localStorage.setItem("users",JSON.stringify(submission))
   return redirect('/help')
 }

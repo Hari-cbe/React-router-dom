@@ -4,6 +4,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 export const RootLayout = () => {
   return (
     <div className='root-layout'>
+      <div className='ad-scroller'> Hurry Up there is an sale</div>
         <header>
         <h1>Job Seeker</h1>
             <nav>
@@ -14,7 +15,7 @@ export const RootLayout = () => {
             </nav>
         </header>
         <main>
-            <Outlet/>
+            <Outlet />
         </main>
     </div>
   )
